@@ -1,0 +1,643 @@
+{
+  "schema": "aca-requirements/v0.1",
+  "title": "AI Control Architecture, Requirements Catalogue",
+  "version": "0.1.0",
+  "license": "CC-BY-4.0",
+  "homepage": "https://aicontrolarchitecture.org",
+  "source_of_truth": "docs/06-requirements-catalogue.md",
+  "generated_by": "scripts/build-catalogue.py",
+  "notes": "Framework tags are pillar-level in this version; provision-level mappings live in mappings/.",
+  "tiers": {
+    "T1": {
+      "name": "Low-risk productivity or public-data use",
+      "applies_to": "public or non-sensitive data, no decision impact, no tool or action capability"
+    },
+    "T2": {
+      "name": "Internal productivity with enterprise data or vendor AI",
+      "applies_to": "uses internal enterprise data or vendor AI for productivity, without influencing decisions or taking actions"
+    },
+    "T3": {
+      "name": "Decision-supporting AI",
+      "applies_to": "influences human decisions, judgments, or records (classify, rank, score, summarize, recommend)"
+    },
+    "T4": {
+      "name": "Action-capable AI",
+      "applies_to": "can call tools, trigger workflows, or prepare, request, or perform actions in enterprise systems"
+    },
+    "T5": {
+      "name": "High-impact autonomous or regulated AI",
+      "applies_to": "affects employment, credit, legal, safety, healthcare, regulated, privileged, or difficult-to-reverse outcomes"
+    }
+  },
+  "boundary_sources": [
+    "Declared",
+    "Evidenced",
+    "Verified",
+    "Enforced"
+  ],
+  "pillars": [
+    {
+      "id": "07",
+      "name": "AI Inventory & Classification",
+      "surface": "See (precondition for all three)",
+      "question": "What AI exists?",
+      "nist_functions": [
+        "Map"
+      ],
+      "frameworks": [
+        "NIST-AI-RMF",
+        "ISO-42001",
+        "EU-AI-ACT",
+        "SR-11-7"
+      ]
+    },
+    {
+      "id": "08",
+      "name": "AI Identity & Access Control",
+      "surface": "See (and the foundation of Do)",
+      "question": "Under what identity and access does the AI act?",
+      "nist_functions": [
+        "Manage"
+      ],
+      "frameworks": [
+        "NIST-AI-RMF",
+        "ISO-42001",
+        "EU-AI-ACT",
+        "NYDFS-500",
+        "OWASP-LLM"
+      ]
+    },
+    {
+      "id": "09",
+      "name": "Data Boundary Control",
+      "surface": "See",
+      "question": "What can it see?",
+      "nist_functions": [
+        "Map",
+        "Manage"
+      ],
+      "frameworks": [
+        "NIST-AI-RMF",
+        "ISO-42001",
+        "EU-AI-ACT",
+        "NYDFS-500",
+        "GDPR",
+        "OWASP-LLM"
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Prompt & Input Control",
+      "surface": "See (the input path into inference)",
+      "question": "What is shaping the AI's behavior?",
+      "nist_functions": [
+        "Measure",
+        "Manage"
+      ],
+      "frameworks": [
+        "NIST-AI-RMF",
+        "ISO-42001",
+        "EU-AI-ACT",
+        "OWASP-LLM",
+        "OWASP-AGENTIC"
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Output & Decision Control",
+      "surface": "Decide",
+      "question": "What can it decide?",
+      "nist_functions": [
+        "Measure",
+        "Manage"
+      ],
+      "frameworks": [
+        "NIST-AI-RMF",
+        "ISO-42001",
+        "EU-AI-ACT",
+        "SR-11-7"
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Tool & Action Control",
+      "surface": "Do",
+      "question": "What can it do?",
+      "nist_functions": [
+        "Manage"
+      ],
+      "frameworks": [
+        "NIST-AI-RMF",
+        "ISO-42001",
+        "EU-AI-ACT",
+        "OWASP-LLM",
+        "OWASP-AGENTIC"
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Human Accountability Model",
+      "surface": "Spans See, Decide, Do",
+      "question": "Who is accountable?",
+      "nist_functions": [
+        "Govern"
+      ],
+      "frameworks": [
+        "NIST-AI-RMF",
+        "ISO-42001",
+        "EU-AI-ACT",
+        "SR-11-7"
+      ]
+    },
+    {
+      "id": "14",
+      "name": "AI Assurance & Testing",
+      "surface": "Proves the boundedness of See, Decide, Do",
+      "question": "Do the controls hold?",
+      "nist_functions": [
+        "Measure"
+      ],
+      "frameworks": [
+        "NIST-AI-RMF",
+        "ISO-42001",
+        "EU-AI-ACT",
+        "SR-11-7"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Monitoring, Logging & Evidence",
+      "surface": "Observes See, Decide, Do",
+      "question": "Can we reconstruct what it did?",
+      "nist_functions": [
+        "Measure",
+        "Manage"
+      ],
+      "frameworks": [
+        "NIST-AI-RMF",
+        "ISO-42001",
+        "EU-AI-ACT",
+        "NYDFS-500",
+        "SR-11-7"
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Incident Containment & Recovery",
+      "surface": "Makes See, Decide, Do reversible",
+      "question": "Can we stop and recover?",
+      "nist_functions": [
+        "Manage"
+      ],
+      "frameworks": [
+        "NIST-AI-RMF",
+        "ISO-42001",
+        "EU-AI-ACT",
+        "NYDFS-500",
+        "SR-11-7"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "ACA-07-01",
+      "pillar": "07",
+      "statement": "The organization SHALL maintain an inventory of all AI use cases, including embedded and vendor AI.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T1",
+      "applies_to_tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Evidenced"
+    },
+    {
+      "id": "ACA-07-02",
+      "pillar": "07",
+      "statement": "Each use case SHALL have a named accountable owner recorded at intake.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T1",
+      "applies_to_tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Declared"
+    },
+    {
+      "id": "ACA-07-03",
+      "pillar": "07",
+      "statement": "Each use case SHALL be assigned a risk tier before controls are selected.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T1",
+      "applies_to_tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Evidenced"
+    },
+    {
+      "id": "ACA-07-04",
+      "pillar": "07",
+      "statement": "The inventory SHALL be reconciled on a defined cadence and on material change.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T2",
+      "applies_to_tiers": [
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Evidenced"
+    },
+    {
+      "id": "ACA-08-01",
+      "pillar": "08",
+      "statement": "AI SHALL act under a distinct non-human identity, not a user's standing credentials.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-08-02",
+      "pillar": "08",
+      "statement": "AI identities SHALL be granted least-privilege access scoped to the use case.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-08-03",
+      "pillar": "08",
+      "statement": "AI access SHALL be revocable promptly and completely.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-08-04",
+      "pillar": "08",
+      "statement": "Consequential actions SHALL be attributable to the identity and grant that authorized them.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
+      "id": "ACA-09-01",
+      "pillar": "09",
+      "statement": "The data sources an AI may access SHALL be explicitly defined and approved.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T2",
+      "applies_to_tiers": [
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Evidenced"
+    },
+    {
+      "id": "ACA-09-02",
+      "pillar": "09",
+      "statement": "Retrieval SHALL be scoped so AI cannot surface data the requester is not entitled to.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T2",
+      "applies_to_tiers": [
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-09-03",
+      "pillar": "09",
+      "statement": "Sensitive data classes SHALL be excluded or masked unless explicitly permitted.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T2",
+      "applies_to_tiers": [
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-09-04",
+      "pillar": "09",
+      "statement": "Third-party processing and retention of data SHALL be known and bounded.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T2",
+      "applies_to_tiers": [
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Evidenced"
+    },
+    {
+      "id": "ACA-10-01",
+      "pillar": "10",
+      "statement": "Untrusted input, including retrieved content, SHALL be treated as potentially adversarial.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T3",
+      "applies_to_tiers": [
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Evidenced"
+    },
+    {
+      "id": "ACA-10-02",
+      "pillar": "10",
+      "statement": "Prompt-injection and manipulation SHALL be mitigated proportionate to tier.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T3",
+      "applies_to_tiers": [
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-10-03",
+      "pillar": "10",
+      "statement": "System instructions SHALL be protected from override by user or retrieved content.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
+      "id": "ACA-11-01",
+      "pillar": "11",
+      "statement": "Output that influences a consequential decision SHALL be identified as such.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T3",
+      "applies_to_tiers": [
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Evidenced"
+    },
+    {
+      "id": "ACA-11-02",
+      "pillar": "11",
+      "statement": "High-impact decisions SHALL require human validation before effect.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T3",
+      "applies_to_tiers": [
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
+      "id": "ACA-11-03",
+      "pillar": "11",
+      "statement": "AI-influenced decisions SHALL be recorded with the output and rationale.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T3",
+      "applies_to_tiers": [
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Evidenced"
+    },
+    {
+      "id": "ACA-12-01",
+      "pillar": "12",
+      "statement": "The tools and actions an AI may invoke SHALL be explicitly allow-listed.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-12-02",
+      "pillar": "12",
+      "statement": "High-impact actions SHALL require approval or step-up before execution.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
+      "id": "ACA-12-03",
+      "pillar": "12",
+      "statement": "No action class SHALL be enforced live without a defined containment or compensation path.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
+      "id": "ACA-12-04",
+      "pillar": "12",
+      "statement": "Every action SHALL be logged with the requesting identity, inputs, and outcome.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-13-01",
+      "pillar": "13",
+      "statement": "A named human SHALL own each consequential outcome, decision, approval, and exception.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T1",
+      "applies_to_tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Declared"
+    },
+    {
+      "id": "ACA-13-02",
+      "pillar": "13",
+      "statement": "Risk acceptance for a use case SHALL be recorded and attributable.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T3",
+      "applies_to_tiers": [
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Evidenced"
+    },
+    {
+      "id": "ACA-13-03",
+      "pillar": "13",
+      "statement": "Recovery ownership SHALL be assigned before go-live for action-capable use cases.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Declared"
+    },
+    {
+      "id": "ACA-14-01",
+      "pillar": "14",
+      "statement": "Controls SHALL be tested before go-live, proportionate to tier.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T3",
+      "applies_to_tiers": [
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-14-02",
+      "pillar": "14",
+      "statement": "High-impact and autonomous use cases SHALL undergo adversarial testing of input, output, and action controls.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T5",
+      "applies_to_tiers": [
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-14-03",
+      "pillar": "14",
+      "statement": "Test results SHALL be retained as evidence and re-run on material change.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T3",
+      "applies_to_tiers": [
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-15-01",
+      "pillar": "15",
+      "statement": "Activity SHALL be logged sufficiently to reconstruct what AI saw, produced, decided, and did.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T2",
+      "applies_to_tiers": [
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-15-02",
+      "pillar": "15",
+      "statement": "Logs SHALL be tamper-evident and retained per policy.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T3",
+      "applies_to_tiers": [
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-15-03",
+      "pillar": "15",
+      "statement": "Anomalous or policy-violating behavior SHALL be detectable and alertable.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-16-01",
+      "pillar": "16",
+      "statement": "Each tiered use case SHALL have a tested means to disable the AI capability quickly.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
+      "id": "ACA-16-02",
+      "pillar": "16",
+      "statement": "High-impact actions SHALL have a containment or compensation/rollback path.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
+      "id": "ACA-16-03",
+      "pillar": "16",
+      "statement": "Recovery from an AI incident SHALL be owned, documented, and exercised.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Evidenced"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "aca-mcp-server",
+  "version": "0.1.0",
+  "description": "Model Context Protocol (MCP) server for the AI Control Architecture requirements catalogue.",
+  "type": "module",
+  "bin": {
+    "aca-mcp": "src/index.mjs"
+  },
+  "files": [
+    "src",
+    "data",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node src/index.mjs",
+    "sync": "node scripts/sync-catalogue.mjs",
+    "test": "node test/smoke.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-governance",
+    "ai-control-architecture",
+    "ai-security"
+  ],
+  "homepage": "https://aicontrolarchitecture.org",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.11.0",
+    "zod": "^3.23.8"
+  }
+}
