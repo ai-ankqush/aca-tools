@@ -1,7 +1,7 @@
 {
   "schema": "aca-requirements/v0.1",
   "title": "AI Control Architecture, Requirements Catalogue",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "license": "CC-BY-4.0",
   "homepage": "https://aicontrolarchitecture.org",
   "source_of_truth": "docs/06-requirements-catalogue.md",
@@ -259,6 +259,18 @@
       "boundary": "Evidenced"
     },
     {
+      "id": "ACA-07-05",
+      "pillar": "07",
+      "statement": "The approved model for each AI role that can act SHALL be recorded, and a different model SHALL NOT act in that role until reassessed and re-approved.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
       "id": "ACA-08-01",
       "pillar": "08",
       "statement": "AI SHALL act under a distinct non-human identity, not a user's standing credentials.",
@@ -440,6 +452,32 @@
       "boundary": "Evidenced"
     },
     {
+      "id": "ACA-11-04",
+      "pillar": "11",
+      "statement": "Claims made on the organization's behalf in AI-generated content SHALL trace to an approved fact source; unsupported claims SHALL be held for a person or revised.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T3",
+      "applies_to_tiers": [
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
+      "id": "ACA-11-05",
+      "pillar": "11",
+      "statement": "AI-generated content published to people outside the organization SHALL carry an AI disclosure applied by the control point, which the AI cannot remove.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T3",
+      "applies_to_tiers": [
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
       "id": "ACA-12-01",
       "pillar": "12",
       "statement": "The tools and actions an AI may invoke SHALL be explicitly allow-listed.",
@@ -488,6 +526,30 @@
       "boundary": "Verified"
     },
     {
+      "id": "ACA-12-05",
+      "pillar": "12",
+      "statement": "The enforcement policy for an action-capable AI SHALL be versioned, machine-readable, and approved by both the business owner and security before it is enforced; an unapproved or expired policy SHALL limit the AI to non-consequential actions.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
+      "id": "ACA-12-06",
+      "pillar": "12",
+      "statement": "A refused or held action SHALL return its reason and the responses open to the AI, within a bounded retry budget; unchanged resubmission of refused content SHALL be stopped.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
       "id": "ACA-13-01",
       "pillar": "13",
       "statement": "A named human SHALL own each consequential outcome, decision, approval, and exception.",
@@ -528,6 +590,18 @@
       "boundary": "Declared"
     },
     {
+      "id": "ACA-13-04",
+      "pillar": "13",
+      "statement": "An action held for human decision SHALL expire if not decided within a defined window and SHALL NOT execute after it.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
       "id": "ACA-14-01",
       "pillar": "14",
       "statement": "Controls SHALL be tested before go-live, proportionate to tier.",
@@ -559,6 +633,18 @@
       "from_tier": "T3",
       "applies_to_tiers": [
         "T3",
+        "T4",
+        "T5"
+      ],
+      "boundary": "Verified"
+    },
+    {
+      "id": "ACA-14-04",
+      "pillar": "14",
+      "statement": "A model-based check used as a control SHALL be pinned to a version, evaluated against known-bad cases before adoption, fail closed, and SHALL NOT override a deterministic block.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
         "T4",
         "T5"
       ],
@@ -604,6 +690,18 @@
       "boundary": "Verified"
     },
     {
+      "id": "ACA-15-04",
+      "pillar": "15",
+      "statement": "Actions recorded by the target system SHALL be reconciled against the control point's record on a defined cadence; an action with no matching record SHALL trigger containment.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
+    },
+    {
       "id": "ACA-16-01",
       "pillar": "16",
       "statement": "Each tiered use case SHALL have a tested means to disable the AI capability quickly.",
@@ -638,6 +736,18 @@
         "T5"
       ],
       "boundary": "Evidenced"
+    },
+    {
+      "id": "ACA-16-04",
+      "pillar": "16",
+      "statement": "Restoring an AI capability after it was disabled SHALL require named, strongly authenticated approval, and two people after a full stop.",
+      "normative_keyword": "SHALL",
+      "from_tier": "T4",
+      "applies_to_tiers": [
+        "T4",
+        "T5"
+      ],
+      "boundary": "Enforced"
     }
   ]
 }
